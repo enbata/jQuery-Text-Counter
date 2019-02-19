@@ -58,7 +58,7 @@
             }
 
             // if max is auto retrieve value
-            if (base.options.max == 'auto') {
+            if (base.options.max == 'auto' || base.options.automax) {
                 var max = base.$el.attr('maxlength');
 
                 if (typeof max !== 'undefined' && max !== false) {
@@ -316,6 +316,7 @@
         'type'                        : "character",                     // "character" or "word"
         'min'                         : 0,                               // minimum number of characters/words
         'max'                         : 200,                             // maximum number of characters/words, -1 for unlimited, 'auto' to use maxlength attribute, 'autocustom' to use a custom attribute for the length (must set "autoCustomAttr")
+        'automax'                     : false,                           // Automatic reload max from maxlength
         'autoCustomAttr'              : "counterlimit",                  // custom attribute name with the counter limit if the max is 'autocustom'
         'countContainerElement'       : "div",                           // HTML element to wrap the text count in
         'countContainerClass'         : "text-count-wrapper",            // class applied to the countContainerElement
