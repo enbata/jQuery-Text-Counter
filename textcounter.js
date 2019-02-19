@@ -58,14 +58,14 @@
             }
 
             if (base.options.max == 'auto' || base.options.max == 'autocustom' || base.options.automax) {
-                var attrName = (base.options.max == 'auto') ? 'maxlength' : base.options.autoCustomAttr:
-                var max = base.$el.attr(attrName);
+                base.options.autoCustomAttr = (base.options.max == 'auto') ? 'maxlength' : base.options.autoCustomAttr;
+                var max = base.$el.attr(base.options.autoCustomAttr);
 
                 if (typeof max !== 'undefined' && max !== false) {
                     base.options.max = max;
                 }
                 else {
-                    base.$container.text('error: [' + attrName + '] attribute not set');
+                    base.$container.text('error: [' + base.options.autoCustomAttr + '] attribute not set');
                 }
             }
 
