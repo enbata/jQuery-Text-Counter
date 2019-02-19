@@ -57,25 +57,15 @@
                 textCount = base.textCount($text);
             }
 
-            // if max is auto retrieve value
-            if (base.options.max == 'auto' || base.options.automax) {
-                var max = base.$el.attr('maxlength');
+            if (base.options.max == 'auto' || base.options.max == 'autocustom' || base.options.automax) {
+                var attrName = (base.options.max == 'auto') ? 'maxlength' : base.options.autoCustomAttr:
+                var max = base.$el.attr(attrName);
 
                 if (typeof max !== 'undefined' && max !== false) {
                     base.options.max = max;
                 }
                 else {
-                    base.$container.text('error: [maxlength] attribute not set');
-                }
-            }
-            else if (base.options.max == 'autocustom') {
-                var max = base.$el.attr(base.options.autoCustomAttr);
-            
-                if (typeof max !== 'undefined' && max !== false) {
-                    base.options.max = max;
-                }
-                else {
-                    base.$container.text('error: [' + base.options.autoCustomAttr  + '] attribute not set');
+                    base.$container.text('error: [' + attrName + '] attribute not set');
                 }
             }
 
@@ -316,7 +306,7 @@
         'type'                        : "character",                     // "character" or "word"
         'min'                         : 0,                               // minimum number of characters/words
         'max'                         : 200,                             // maximum number of characters/words, -1 for unlimited, 'auto' to use maxlength attribute, 'autocustom' to use a custom attribute for the length (must set "autoCustomAttr")
-        'automax'                     : false,                           // Automatic reload max from maxlength
+        'automax'                     : false,                           // Automatic reload max from max attribute
         'autoCustomAttr'              : "counterlimit",                  // custom attribute name with the counter limit if the max is 'autocustom'
         'countContainerElement'       : "div",                           // HTML element to wrap the text count in
         'countContainerClass'         : "text-count-wrapper",            // class applied to the countContainerElement
